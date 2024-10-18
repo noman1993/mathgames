@@ -1,0 +1,23 @@
+#guessGame {
+    display: none;
+}
+
+#guessGame h2 {
+    padding-bottom: 15px;
+}
+
+#guessGame p {
+    padding-bottom: 10px;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+#guessGame label, #guessGame input {
+    display: block;
+    margin: 10px auto;
+}
+
+#guessGame #feedback, #guessGame #previousGuesses {
+    margin-top: 20px;
+    font-size: 18px;
+}

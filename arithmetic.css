@@ -1,0 +1,23 @@
+#arithmeticGame {
+    display: none;
+}
+
+#arithmeticGame h2 {
+    padding-bottom: 15px;
+}
+
+#arithmeticGame p {
+    padding-bottom: 10px;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+#arithmeticGame #game {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#arithmeticGame #game p, #arithmeticGame #result, #arithmeticGame #score {
+    padding: 10px;
+    font-size: 20px;
+}
