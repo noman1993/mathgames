@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Games</title>
-    <link rel="stylesheet" href="css/items.css">
-    <link rel="stylesheet" href="css/guess.css">
-    <link rel="stylesheet" href="css/arithmetic.css">
+    <link rel="stylesheet" href="css/items.css"> <!-- Main/common styles -->
 </head>
 <body>
     <div class="container">
@@ -14,53 +12,163 @@
         <div class="select-game">
             <select id="gameSelector">
                 <option value="select">Select Games</option>
-                <option value="guessGame">Guess the Number Game</option>
+                <option value="guessGame">Guess the Number</option>
                 <option value="arithmeticGame">Arithmetic Game</option>
+                <option value="guessNumHints">Guess Number with Hints</option>
+                <option value="bingoMath">Math Bingo</option>
                 <!-- Add more game options here -->
             </select>
         </div>
 
-        <!-- Guess games -->
-        <div id="guessGame" class="game">
-            <h2>Guess the Number Game</h2>
-            <p>you have to select the guessed numbers betwwen 1 and 100. you will get 8 turns</p>
-            <div>
-                <label for="guessField">Enter your guess: </label>
-                <input type="number" id="guessField" />
-                <button id="submitGuess">Submit Guess</button>
+        
+                    <!-- Guess games -->
+            <div id="guessGame" class="game">
+                <h2>Guess the Number</h2>
+                <p>You have to guess a number between 1 and 100. You will get 8 turns.</p>
+                <div>
+                    <label for="guessField">Enter your guess: </label>
+                    <input type="number" id="guessField" />
+                    <button id="submitGuess">Submit Guess</button>
+                </div>
+                <div>
+                    <p style="color: red; font-size: 20px;" id="feedback"></p>
+                    <p id="previousGuesses"></p>
+                </div>
+                <button id="resetGame" style="display:none;">Start New Game</button>
             </div>
-            <div>
-                <p style="color: red; font-size: 20px;" id="feedback"></p>
-                <p id="previousGuesses"></p>
+
+            <!-- Arithmetic game -->
+            <div id="arithmeticGame" class="game">
+                <h2>Arithmetic Game</h2>
+                <p>There are 10 math problems in this game. Solve them to score points!</p>
+                <div id="game" style="display: none;">
+                    <p id="problem"></p>
+                    <input type="number" id="answer" placeholder="Your answer" />
+                    <button style="margin: 3px auto;" id="submit">Submit</button>
+                </div>
+                <p style="color: red;" id="result"></p>
+                <p id="score"></p>
+                <button id="start" style="margin: 2px auto;">Start Game</button>
             </div>
-            <button id="resetGame" style="display:none;">Start New Game</button>
-            <script src="js/guess.js"></script>
-        </div>
-        <!-- arithmatic games -->
-        <div id="arithmeticGame" class="game">
-            <h2>Arithmetic Game</h2>
-            <p style="margin: 5px 20px;">There are 10 simple math have in this game. you have to solve those. for a correct answer you will get 1 and for a wrong answer, from score (0.5) will deduct.</p>
-            <div id="game" style="display: none;">
-                <p id="problem"></p>
-                <input type="number" id="answer" placeholder="Your answer" />
-                <button style="margin: 3px auto;" id="submit">Submit</button>
+            <!-- Guess Number with Hints -->
+            <div id="guessNumHints" class="game">
+                <h1>Guess The Number with Hints</h1>
+        
+                <div class="difficulty-label">
+                    <p>Select Dificulty:</p>
+                    <button id="easy">Easy (1-100)</button>
+                    <button id="medium">Medium (1-200)</button>
+                    <button id="dificult">Difficult (1-300)</button>
+                </div>
+        
+                <div class="game-body" style="display: none;">
+                    <p>Guess a number between range <span id="range"></span>:</p>
+                    <input type="number" id="guess-number" placeholder="your assumption">
+                    <button id="submit-btn">submit</button>
+        
+                    <p id="hint"></p>
+                    <p id="message"></p>
+                    <p id="prevGuess"></p>
+        
+                    <button id="resetBtn" style="display: none;">Play Again</button>
+                </div>
+                
             </div>
-            <p style="color: red;" id="result"></p>
-            <p id="score"></p>
-            <button id="start" style="margin: 2px auto;">Start Game</button>
-            <script src="js/arith.js"></script>
-        </div>
-        <!-- Add more game divs here -->
+
+
+            <!-- Bingo Math Game -->
+        
+            <div id="bingoMath" class="game">
+                <h1>Math Bingo</h1>
+                <p style="margin: 10px 0;">you have to solve 5 problems either rows or colums </p>
+                <h4>Question part</h4>
+                <div class="bingo-card" id="bingoCard"></div>
+                <h4>Answer part</h4>
+                <div class="answer-pool" id="answerPool"></div>
+                <p id="bingoMessage" style="color: red;">u</p>
+                <button id="restartGame" style="display: none;" >Restart Game</button>
+            </div>
+
+            <!-- Add more game divs here -->
+
+
     </div>
+
     <script>
         const gameSelector = document.getElementById('gameSelector');
         const games = document.querySelectorAll('.game');
-        
-        gameSelector.addEventListener('click', () => {
+    
+        // Function to dynamically load JS and CSS files
+        function loadGameResources(game) {
+            // Remove any previously added game-specific resources
+            removeGameResources();
+
+            // Load JS and CSS files for the selected game
+            if (game === 'guessGame') {
+                loadScript('js/guess.js');
+                loadStylesheet('css/guess.css');
+            } else if (game === 'arithmeticGame') {
+                loadScript('js/arith.js');
+                loadStylesheet('css/arithmetic.css');
+            } else if(game === 'guessNumHints'){
+                loadScript('js/guesshints.js');
+                loadStylesheet('css/guesshints.css')
+            } else if(game === 'bingoMath'){
+                loadScript('js/bingoMath.js');
+                loadStylesheet('css/bingomath.css')
+
+            }
+            // Add more conditions for other games
+        }
+
+        // Function to remove previously loaded JS and CSS
+        function removeGameResources() {
+            const head = document.head;
+
+            // Remove previously loaded JS files
+            const scripts = document.querySelectorAll('script[data-game]');
+            scripts.forEach(script => head.removeChild(script));
+
+            // Remove previously loaded CSS files
+            const links = document.querySelectorAll('link[data-game]');
+            links.forEach(link => head.removeChild(link));
+        }
+
+        // Function to load a JS file
+        function loadScript(src) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.setAttribute('data-game', 'true'); // Tagging for later removal
+            document.head.appendChild(script);
+        }
+
+        // Function to load a CSS file
+        function loadStylesheet(href) {
+            const link = document.createElement('link');
+            link.href = href;
+            link.rel = 'stylesheet';
+            link.setAttribute('data-game', 'true'); // Tagging for later removal
+            document.head.appendChild(link);
+        }
+
+        // Hide all games initially
+        window.onload = () => {
+            games.forEach(game => {
+                game.style.display = 'none'; // Ensure all games are hidden when the page loads
+            });
+        };
+
+        // Game selector event
+        gameSelector.addEventListener('change', () => {
             const selectedGame = gameSelector.value;
             games.forEach(game => {
                 game.style.display = game.id === selectedGame ? 'block' : 'none';
             });
+
+            // Load the JS and CSS for the selected game
+            if (selectedGame !== 'select') {
+                loadGameResources(selectedGame);
+            }
         });
     </script>
 </body>

@@ -6,8 +6,8 @@ const scoreElement = document.getElementById('score')
 const restartBtn = document.getElementById('start')
 
 let currentProblem ={}
-let score = 0
-let turns = 10
+let scoreArith = 0
+let turnsArith = 10
 
 function generateProblem (){
     const operations = ['+','-','*','/']
@@ -38,17 +38,17 @@ function checkAnswer (){
     const userAnswer = parseFloat(inputValues.value)
     if(userAnswer === parseFloat(correctAnswer)){
         showResult.textContent = 'correct'
-        score++
+        scoreArith++
     }else{
         showResult.textContent = `wrong! the correct answer was ${correctAnswer}`
-        score -= 0.5
+        scoreArith -= 0.5
     }
 
-    scoreElement.textContent = `score: ${score}`
-    turns--
-    showResult.textContent += ` and turns remains ${turns}`
+    scoreElement.textContent = `score: ${scoreArith}`
+    turnsArith--
+    showResult.textContent += ` and turns remains ${turnsArith}`
 
-    if(turns > 0){
+    if(turnsArith > 0){
        setTimeout(displayProblem, 4000)
     }else{
         endGame()
@@ -57,16 +57,16 @@ function checkAnswer (){
 
 function endGame(){
     problemElement.textContent = ''
-    showResult.textContent = `Game over!! your final score is ${score}`
+    showResult.textContent = `Game over!! your final score is ${scoreArith}`
     restartBtn.style.display = 'block'
     document.getElementById('game').style.display = 'none'
     scoreElement.style.display = 'none'
 }
 
 function reStartGame(){
-    score = 0
-    turns = 10
-    score.textContent = `Score: ${score}`
+    scoreArith = 0
+    turnsArith = 10
+    score.textContent = `Score: ${scoreArith}`
     document.getElementById('game').style.display = 'block'
     scoreElement.style.display = 'block'
     restartBtn.style.display = 'none'

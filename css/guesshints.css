@@ -1,0 +1,17 @@
+#guessNumHints p{
+    
+        font-size: 18px;
+        margin: 8px 0 5px 0;
+        font-weight: bold;
+    
+}
+
+#message{
+    color: red;
+    font-size: 22px;
+}
+
+#resetBtn{
+    margin: 20px auto;
+}
+

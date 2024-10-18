@@ -31,6 +31,10 @@ select{
     border-radius: 7px;
 
 }
+
+.game{
+    display: none;
+}
 option{
     font-size: 20px;
     padding: 10px 5px;

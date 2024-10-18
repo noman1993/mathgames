@@ -1,0 +1,24 @@
+
+
+.bingo-card, .answer-pool {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin: 5px 0;
+}
+
+.bingo-cell, .answer-cell {
+    padding: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bingo-cell.correct {
+    background-color: #28a745;
+}
+
+.answer-cell {
+    background-color: #6c757d;
+}
