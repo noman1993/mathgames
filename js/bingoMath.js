@@ -1,4 +1,5 @@
-const bingoCard = document.getElementById('bingoCard');
+(function(){
+    const bingoCard = document.getElementById('bingoCard');
 const bingoAnswerPool = document.getElementById('answerPool');
 const bingoMessage = document.getElementById('bingoMessage');
 const restartGame = document.getElementById('restartGame');
@@ -131,3 +132,5 @@ restartGame.addEventListener('click', () => {
 });
 
 startGame();
+
+})()

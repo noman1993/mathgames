@@ -94,6 +94,7 @@
 
     </div>
 
+   
     <script>
         const gameSelector = document.getElementById('gameSelector');
         const games = document.querySelectorAll('.game');
@@ -102,46 +103,45 @@
         function loadGameResources(game) {
             // Remove any previously added game-specific resources
             removeGameResources();
-
+    
             // Load JS and CSS files for the selected game
             if (game === 'guessGame') {
-                loadScript('js/guess.js');
+                // loadScript('js/guess.js');
                 loadStylesheet('css/guess.css');
             } else if (game === 'arithmeticGame') {
-                loadScript('js/arith.js');
+                // loadScript('js/arith.js');
                 loadStylesheet('css/arithmetic.css');
-            } else if(game === 'guessNumHints'){
-                loadScript('js/guesshints.js');
+            } else if (game === 'guessNumHints'){
+                // loadScript('js/guesshints.js')
                 loadStylesheet('css/guesshints.css')
             } else if(game === 'bingoMath'){
-                loadScript('js/bingoMath.js');
+                // loadScript('js/bingoMath.js')
                 loadStylesheet('css/bingomath.css')
-
             }
             // Add more conditions for other games
         }
-
+    
         // Function to remove previously loaded JS and CSS
         function removeGameResources() {
             const head = document.head;
-
+    
             // Remove previously loaded JS files
             const scripts = document.querySelectorAll('script[data-game]');
             scripts.forEach(script => head.removeChild(script));
-
+    
             // Remove previously loaded CSS files
             const links = document.querySelectorAll('link[data-game]');
             links.forEach(link => head.removeChild(link));
         }
-
+    
         // Function to load a JS file
-        function loadScript(src) {
-            const script = document.createElement('script');
-            script.src = src;
-            script.setAttribute('data-game', 'true'); // Tagging for later removal
-            document.head.appendChild(script);
-        }
-
+        // function loadScript(src) {
+        //     const script = document.createElement('script');
+        //     script.src = src;
+        //     script.setAttribute('data-game', 'true'); // Tagging for later removal
+        //     document.head.appendChild(script);
+        // }
+    
         // Function to load a CSS file
         function loadStylesheet(href) {
             const link = document.createElement('link');
@@ -150,26 +150,31 @@
             link.setAttribute('data-game', 'true'); // Tagging for later removal
             document.head.appendChild(link);
         }
-
+    
         // Hide all games initially
         window.onload = () => {
             games.forEach(game => {
                 game.style.display = 'none'; // Ensure all games are hidden when the page loads
             });
         };
-
+    
         // Game selector event
         gameSelector.addEventListener('change', () => {
             const selectedGame = gameSelector.value;
             games.forEach(game => {
-                game.style.display = game.id === selectedGame ? 'block' : 'none';
+                game.style.display = game.id === selectedGame ? 'block' : 'none'; // Show only the selected game
             });
-
+    
             // Load the JS and CSS for the selected game
             if (selectedGame !== 'select') {
                 loadGameResources(selectedGame);
             }
         });
     </script>
+    <script src="js/arith.js"></script>
+    <script src="js/bingoMath.js"></script>
+    <script src="js/guess.js"></script>
+    <script src="js/guesshints.js"></script>
+    
 </body>
 </html>

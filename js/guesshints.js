@@ -1,4 +1,5 @@
-// const inputNumber = document.getElementById('guess-number')
+(function(){
+    // const inputNumber = document.getElementById('guess-number')
 // const submitButtn = document.getElementById("submit-btn")
 // const hint = document.getElementById("hint")
 // const message = document.getElementById("message")
@@ -255,3 +256,5 @@ resetBtn.addEventListener('click', () => {
     gameInterface.style.display = "none";
     difficultySelected = false;
 });
+
+})()

@@ -1,4 +1,5 @@
-const problemElement = document.getElementById('problem')
+(function(){
+    const problemElement = document.getElementById('problem')
 const inputValues = document.getElementById('answer')
 const submitButton = document.getElementById('submit')
 const showResult = document.getElementById('result')
@@ -78,3 +79,5 @@ restartBtn.addEventListener('click', reStartGame)
 submitButton.addEventListener('click',checkAnswer)
 
 
+
+})()

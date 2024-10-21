@@ -1,4 +1,5 @@
-const inputValue = document.getElementById("guessField")
+(function(){
+    const inputValue = document.getElementById("guessField")
 const submitBtn = document.getElementById("submitGuess")
 const feedback = document.getElementById("feedback")
 const previousValue = document.getElementById("previousGuesses")
@@ -58,3 +59,4 @@ function resetGame(){
 
 submitBtn.addEventListener('click', checkGuess)
 resetButton.addEventListener('click', resetGame)
+})()
